@@ -25,12 +25,18 @@ public static class PerfomanceTests
             })
             .ToArray();
 
-        for (int i = 0; i < count; i += 100_000)
+        for (int i = 0; i < count; i += 1000)
         {
             var document = documents[i];
             documentIds.Add(document.DocumentId);
         }
 
+        /*
+        foreach (var document in documents)
+        {
+            documentIds.Add(document.DocumentId);
+        }
+        */
         print($"End PrepareDocuments");
 
         return documents;
@@ -73,6 +79,10 @@ public static class PerfomanceTests
         print($"Start Put");
         db.Write(writeBatch);
         print($"End Put");
+
+        print($"Flush");
+        db.Flush(new FlushOptions());
+        print($"End Flush");
     }
 
 
@@ -105,7 +115,21 @@ public static class PerfomanceTests
                 var document = Document.From(documentJson);
                 print(document);
             });
-
     }
 
+    public static void RunReadParallelRepeatReadOnly(RocksDbSharp.RocksDb db, 
+        IReadOnlyCollection<string> documentIds, int repeat = 100_000)
+    {
+        print("Start RunReadParallelRepeatReadOnly");
+
+        Enumerable.Repeat(documentIds, repeat)
+            .SelectMany(x => x)
+            .AsParallel()
+            .ForAll(documentId =>
+            {
+                var documentJson = db.Get(documentId);
+            });
+
+        print("End RunReadParallelRepeatReadOnly");
+    }
 }

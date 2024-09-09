@@ -14,20 +14,20 @@ if (Directory.Exists(directory) == false) Directory.CreateDirectory(directory);
 
 print($"Selected Path: {directory}");
 
-//var documents = PrepareDocuments(documentIds, 10_000_000);
+//var documents = PerfomanceTests.PrepareDocuments(documentIds, 10_000_000);
+//File.WriteAllLines(Path.Combine(directory, "documentIds.txt"), documentIds);
 
 print($"try open:");
 using (var db = RocksDb.Open(options, directory))
 {
     print($"Success!!");
-    //PerfomanceTests.RunWriteBatch(db, documents, documentIds);
-    //db.Flush(new FlushOptions());
-    //PerfomanceTests.RunRead(db, documentIds);
-    //File.WriteAllLines(Path.Combine(directory, "documentIds.txt"), documentIds);
+    //PerfomanceTests.RunWriteBatch(db, documents, documentIds); 
 
     documentIds = File.ReadAllLines(Path.Combine(directory, "documentIds.txt")).ToList();
-
-    PerfomanceTests.RunReadParallelRepeat(db, documentIds);
+    //print($"documentIds: {documentIds.Count}");
+    //PerfomanceTests.RunRead(db, documentIds);
+    //PerfomanceTests.RunReadParallelRepeat(db, documentIds);
+    PerfomanceTests.RunReadParallelRepeatReadOnly(db, documentIds, 1000);//result 100 reads in 1 m\s
 
     /*
     print($"Start Read");
