@@ -27,7 +27,30 @@ using (var db = RocksDb.Open(options, directory))
     //print($"documentIds: {documentIds.Count}");
     //PerfomanceTests.RunRead(db, documentIds);
     //PerfomanceTests.RunReadParallelRepeat(db, documentIds);
-    PerfomanceTests.RunReadParallelRepeatReadOnly(db, documentIds, 1000);//result 100 reads in 1 m\s
+    //PerfomanceTests.RunReadParallelRepeatReadOnly(db, documentIds, 1000);//result 100 reads in 1 m\s
+
+    using (var iterator = db.NewIterator(/*readOptions: new ReadOptions().SetIterateUpperBound("t")*/))
+    {
+        iterator.Seek("01J7BXRBJ");//01J7BXRBJQY49R9GGZSQ6Z1V23
+
+        int count = 0;
+        while (iterator.Valid() )
+        {
+            string key = iterator.StringKey();
+            string value = iterator.StringValue();
+            //print(key, value);
+            if (key.StartsWith("01J7BXRBJ"))
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+            iterator.Next();
+        }
+        print($"count: {count}");
+    }
 
     /*
     print($"Start Read");
@@ -39,4 +62,15 @@ using (var db = RocksDb.Open(options, directory))
     Console.ReadLine();
 }
 
+var blockBasedTableOptions = new BlockBasedTableOptions()
+                             // Use a bloom filter to help reduce read amplification on point lookups. 10 bits per key yields a
+                             // ~1% false positive rate as per the RocksDB documentation. This builds one filter per SST, which
+                             // means its optimized for not having a key.
+                             .SetFilterPolicy(BloomFilterPolicy.Create(10, false))
+                             // Use a hash index in SST files to speed up point lookup.
+                             .SetIndexType(BlockBasedTableIndexType.Hash)
+                             // Whether to use the whole key or a prefix of it (obtained through the prefix extractor below).
+                             // Since the prefix extractor is a no-op, better performance is achieved by turning this off (i.e.
+                             // setting it to true).
+                             .SetWholeKeyFiltering(true);
 
