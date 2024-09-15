@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Net.RocksDb.Domain;
+namespace DotnetRocksDb.Tests.Domain;
 
 public sealed record Document
 {
@@ -11,6 +11,7 @@ public sealed record Document
     public required int DocumentType { get; set; }
     public required int OperationType { get; set; }
     public required int DocumentStatus { get; set; }
+    public required int Index { get; set; }
 
     public string Json() => JsonSerializer.Serialize(this);
 

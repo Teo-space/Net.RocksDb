@@ -1,6 +1,6 @@
 ﻿using RocksDbSharp;
 
-namespace Net.RocksDb.Tests;
+namespace DotnetRocksDb.Tests.TestsSimple;
 
 public static class TaskWhenAllTests
 {

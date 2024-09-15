@@ -2,7 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.RocksDb", "Net.RocksDb\Net.RocksDb.csproj", "{70B30247-EB17-4130-826C-29210513CD7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetRocksDb.Tests", "DotnetRocksDb.Tests\DotnetRocksDb.Tests.csproj", "{8733D058-290B-48FB-9F73-0F88003BD12B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RocksDb.Extensions", "RocksDb.Extensions\RocksDb.Extensions.csproj", "{A3FDE118-4127-4E4C-95FA-FCD0DA1BA39C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +12,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{70B30247-EB17-4130-826C-29210513CD7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70B30247-EB17-4130-826C-29210513CD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70B30247-EB17-4130-826C-29210513CD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70B30247-EB17-4130-826C-29210513CD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8733D058-290B-48FB-9F73-0F88003BD12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8733D058-290B-48FB-9F73-0F88003BD12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8733D058-290B-48FB-9F73-0F88003BD12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8733D058-290B-48FB-9F73-0F88003BD12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3FDE118-4127-4E4C-95FA-FCD0DA1BA39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3FDE118-4127-4E4C-95FA-FCD0DA1BA39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3FDE118-4127-4E4C-95FA-FCD0DA1BA39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3FDE118-4127-4E4C-95FA-FCD0DA1BA39C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
