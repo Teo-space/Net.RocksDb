@@ -41,7 +41,7 @@ internal static class Print
         Console.Write("	");
     }
 
-    public static void print(object? o = null, ConsoleColor color = ConsoleColor.White)
+    public static void print(object o = null, ConsoleColor color = ConsoleColor.White)
     {
         PrintTime();
         Console.ForegroundColor = color;

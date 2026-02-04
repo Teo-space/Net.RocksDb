@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DotnetRocksDb.Tests/DotnetRocksDb.Tests.csproj" />
+  <Project Path="RocksDb.Extensions/RocksDb.Extensions.csproj" />
+</Solution>

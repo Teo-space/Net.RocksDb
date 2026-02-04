@@ -53,14 +53,4 @@ public static partial class RocksDbExtensions
             }
         }
     }
-
-    public static void ScanRangeAscending(this RocksDbSharp.RocksDb database, byte[] keyMin, byte[] keyMax)
-    {
-
-    }
-
-    public static void ScanRangeDescending(this RocksDbSharp.RocksDb database, byte[] keyMin, byte[] keyMax)
-    {
-
-    }
 }
